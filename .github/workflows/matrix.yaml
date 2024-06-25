@@ -3,10 +3,29 @@ on: [push]
 
 jobs:
     node-matrix:
+        continue-on-error: false
         strategy:
             matrix:
                 os: [ubuntu-latest, windows-latest]
                 node-version: [14, 15, 16]
+                include:
+                    # does not override variable combinations, only matches and adds new variables
+                    # this adds is-ubuntu=true to ubuntu-latest
+                    - os: ubuntu-latest
+                      is-ubuntu: true
+                    # a new combination (macos-latest + node 15 is created)
+                    - os: macos-latest
+                      node-version: 15
+                    # no match possible, adds experimental-variable to all "original" (6) combinations
+                    - experimental: true
+                exclude:
+                    - os: ubuntu-latest
+                      node-version: 14
+                    # excludes all ubuntu-latest combinations
+                    # - os: ubuntu-latest
+            # if any job fails, the other jobs are cancelled when fail-fast is true
+            fail-fast: false
+            # max-parallel: 3
         runs-on: ${{ matrix.os }}
         steps:
             - run: node -v
