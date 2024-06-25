@@ -17,7 +17,7 @@ jobs:
                     - os: macos-latest
                       node-version: 15
                     # no match possible, adds experimental-variable to all "original" (6) combinations
-                    - experimental: true
+                    - experimental: false
                 exclude:
                     - os: ubuntu-latest
                       node-version: 14
