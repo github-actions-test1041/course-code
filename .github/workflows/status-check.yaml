@@ -7,6 +7,8 @@ jobs:
         steps:
             - name: Step 1
               run: sleep 20
+            - name: Fail
+              run: exit 1
             - name: Runs on Failure
               if: failure()
               run: echo "it failed"
@@ -17,7 +19,7 @@ jobs:
             - name: Always Runs
               if: always()
               run: echo 'after all this time'
-            - name: Runs on Cancle
+            - name: Runs on Cancel
               if: cancelled()
               run: echo 'it was cancelled'
     job-2:
