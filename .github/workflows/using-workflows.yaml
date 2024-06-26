@@ -11,7 +11,7 @@ on:
 jobs:
   calling-reusable-workflow:
     #runs-on and steps not necessary, because other workflow is called instead
-    uses: ./.github/workflows/reusable.yaml@main
+    uses: ./.github/workflows/reusable.yaml
     #if using workflows from different repositroy, you need to allow it in github settings
     #also the path changes to *organisation*/*repository*/.github...
     with:
