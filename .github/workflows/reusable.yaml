@@ -7,12 +7,23 @@ on:
         type: string
         default: 'David'
         required: false
+    outputs:
+      date:
+        description: "Date Value"
+        value: ${{ jobs.generate-output.outputs.date }}
     secrets:
       access-token:
         description: 'Secret description'
         required: true
 
 jobs:
+  generate-output:
+    runs-on: ubuntu-latest
+    outputs:
+      date: ${{ steps.date-step.outputs.date }}
+    steps:
+      - run: echo "date=$(date)" >> GITHUB_OUTPUT
+        id: date-step
   checkout:
     runs-on: ubuntu-latest
     steps:
