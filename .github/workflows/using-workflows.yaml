@@ -1,0 +1,20 @@
+name: Calling Reusable Workflow
+on:
+  workflow_dispatch:
+    inputs:
+        name:
+          description: 'Input Description'
+          type: string
+          default: 'David'
+          required: false
+
+jobs:
+  calling-reusable-workflow:
+    #runs-on and steps not necessary, because other workflow is called instead
+    uses: ./.github/workflows/reusable.yaml@main
+    #if using workflows from different repositroy, you need to allow it in github settings
+    #also the path changes to *organisation*/*repository*/.github...
+    with:
+      name: ${{ inputs.name }}
+    secrets:
+      access-token: ${{ secrets.ACCESS_TOKEN }}
