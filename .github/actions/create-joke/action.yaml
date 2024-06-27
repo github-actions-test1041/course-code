@@ -29,4 +29,4 @@ runs:
       if: inputs.upload_joke
       with:
         name: joke
-        paht: joke.txt
+        path: joke.txt
