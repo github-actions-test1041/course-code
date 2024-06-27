@@ -1,0 +1,32 @@
+name: Random Joke
+author: david koch
+description: "Generate a random Joke and upload it"
+inputs:
+  upload_joke:
+    description: "Upload Joke as an Artifact? (boolean)"
+outputs:
+  joke:
+    description: The generated Joke
+    value: ${{ steps.joke.outputs.random_joke }}
+runs:
+  using: composite
+  steps:
+    . name: Generate Joke
+      shell: bash
+      id: joke
+      run: |
+        EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+        echo "random_joke<<$EOF" >> "$GITHUB_OUTPUT"
+        curl - https://icanhazdadjoke.com/ >> "$GITHUB_OUTPUT"
+        echo "" >> "$GITHUB_OUTPUT"
+        echo "$EOF" >> "$GITHUB_OUTPUT"
+    - name: Generatae Joke File
+      shell: bash
+      run: echo '${{ steps.joke.outputs.random_joke }}' >> joke.txt
+      if: inputs.upload_joke
+    - name: Upload the Joke
+      uses: actions/upload-artifacs@v3
+      if: inputs.upload_joke
+      with:
+        name: joke
+        paht: joke.txt
