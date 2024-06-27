@@ -17,4 +17,4 @@ runs:
   pre: "setup"
   pre-if: runner.os == 'linux'
   post: "cleanup"
-  post-if: runner.os == 'linux
+  post-if: runner.os == 'linux'
