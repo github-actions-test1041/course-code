@@ -1,0 +1,19 @@
+name: Hello World
+author: David Koch
+description: "Greet someone and record the time"
+inputs:
+  who_to_greet:
+    description: "Who to greet"
+    required: true
+    default: "World"
+outputs:
+  time:
+    description: "The Time of greeting"
+runs:
+  using: "node16"
+  main: index.ja
+  # pre does not work in private actions
+  pre: "setup"
+  pre-if: runner.os == 'linux'
+  post: "cleanup"
+  post-if: runner.os == 'linux
