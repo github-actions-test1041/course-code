@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Send a Joke
         id: gen-joke
-        uses: ./.github/actions/creat-joke
+        uses: ./.github/actions/create-joke
         with:
           upload_joke: true
       - name: display joke output
