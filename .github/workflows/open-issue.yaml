@@ -9,7 +9,7 @@ on:
       body:
         description: Issue Body
         default: ""
-        type: strings
+        type: string
 
 jobs:
   open-issue:
