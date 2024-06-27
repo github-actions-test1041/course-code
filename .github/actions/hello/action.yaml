@@ -14,7 +14,7 @@ runs:
   #created with "ncc build index.js" in hello folder
   main: 'dist/index.js'
   # pre does not work in private actions
-  pre: "setup"
+  pre: "setup.js"
   pre-if: runner.os == 'linux'
-  post: "cleanup"
+  post: "cleanup.js"
   post-if: runner.os == 'linux'
