@@ -11,7 +11,8 @@ outputs:
     description: "The Time of greeting"
 runs:
   using: "node16"
-  main: index.ja
+  #created with "ncc build index.js" in hello folder
+  main: 'dist/index.js'
   # pre does not work in private actions
   pre: "setup"
   pre-if: runner.os == 'linux'
