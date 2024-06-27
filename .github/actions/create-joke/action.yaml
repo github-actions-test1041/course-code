@@ -11,7 +11,7 @@ outputs:
 runs:
   using: composite
   steps:
-    . name: Generate Joke
+      name: Generate Joke
       shell: bash
       id: joke
       run: |
