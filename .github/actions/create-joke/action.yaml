@@ -25,7 +25,7 @@ runs:
       run: echo '${{ steps.joke.outputs.random_joke }}' >> joke.txt
       if: inputs.upload_joke
     - name: Upload the Joke
-      uses: actions/upload-artifacs@v3
+      uses: actions/upload-artifact@v3
       if: inputs.upload_joke
       with:
         name: joke
